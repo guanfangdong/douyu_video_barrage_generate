@@ -42,11 +42,11 @@ class DouYu_barrage_generate:
         barrage_position = "{\pos(383,"+str(position)+")}"
         barrage_content = barrage[1]
         final_barrage = "Dialogue: 0,"+str(barrage_start_time)+","+str(barrage_end_time)+\
-            ",*Default,NTP,0,0,0,banner;15;0;0,"+str(barrage_position)+str(barrage_content)+"\n"
+            ",*Default,NTP,0,0,0,banner;25;0;0,"+str(barrage_position)+str(barrage_content)+"\n"
         count_time_as_second = hour*3600 + minute*60 + second
         self.barrage_time[index] = count_time_as_second
         for i in range(len(self.barrage_time)):
-            if self.barrage_time[i]!=None and count_time_as_second >= self.barrage_time[i] + 1:
+            if self.barrage_time[i]!=None and count_time_as_second >= self.barrage_time[i] + 2:
                 self.barrage_time[i] = None
                 self.barrage_gates[i] = 1
         print(final_barrage)
@@ -69,8 +69,8 @@ class DouYu_barrage_generate:
             
         
     def run(self):
-        self.load_barrage("60937 2019-06-06 11点场 弹幕")
-        self.generate_barrage("60937 2019-06-06 11点场 弹幕")     
+        self.load_barrage("怀旧服beta 60937 2019-06-05 20点场 弹幕")
+        self.generate_barrage("怀旧服beta 60937 2019-06-05 20点场 弹幕")     
         print("完成")
 
 if __name__=='__main__':
