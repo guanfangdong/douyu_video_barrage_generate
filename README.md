@@ -1,1 +1,7 @@
-# douyu_video_barrage_generate
+# 斗鱼视频弹幕本地生成
+
+# 使用方法
+
+安装selenium
+编译运行
+输入斗鱼视频网址
