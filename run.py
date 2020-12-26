@@ -66,7 +66,6 @@ class DouYu_barrage_generate:
                                   (186.0, 175.0), (83.0, 175.0), (289.0, 175.0),
                                   (186.0, 185.0), (83.0, 185.0), (289.0, 185.0)]
 
-
         self.barrage_gates = [1]*len(self.barrage_positions)
         self.barrage_time = [None]*len(self.barrage_positions)
 
@@ -141,12 +140,10 @@ class DouYu_barrage_generate:
 
 
 if __name__ == "__main__":
-    # flag = True
-    # while flag:
-    # v_id = input("输入对应视频的id：")
-    # title = catch_danmu(v_id)
-    title = 'zard1991_【2020-12-10 16点场】zard1991：zard1991_斗鱼视频 - 最6的弹幕视频网站'
-
-    douYu_barrage_generate = DouYu_barrage_generate()
-    douYu_barrage_generate.run(title)
-    print("完成，现在开始下一个！\n")
+    flag = True
+    while flag:
+        v_id = input("输入对应视频的id：")
+        title = catch_danmu(v_id)
+        douYu_barrage_generate = DouYu_barrage_generate()
+        douYu_barrage_generate.run(title)
+        print("完成，现在开始下一个！\n")
