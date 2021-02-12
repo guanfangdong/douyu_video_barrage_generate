@@ -1,3 +1,4 @@
+import time
 import requests
 import math
 from lxml.html import fromstring
@@ -123,9 +124,10 @@ class DouYu_barrage_generate:
         try:
             index = self.barrage_gates.index(1)
             if len(barrage_content) > 15:
-                indices = [i for i, x in enumerate(self.barrage_gates) if x == 1]
+                indices = [i for i, x in enumerate(
+                    self.barrage_gates) if x == 1]
                 for i in indices:
-                    if i%3 == 0:
+                    if i % 3 == 0:
                         if self.barrage_gates[i+1] == 1 and self.barrage_gates[i+2] == 1:
                             index = i
                             self.barrage_gates[i+1] = 0
@@ -133,26 +135,27 @@ class DouYu_barrage_generate:
                             self.barrage_time[i+1] = count_time_as_second
                             self.barrage_time[i+2] = count_time_as_second
                             break
-                    elif i%3 == 1:
+                    elif i % 3 == 1:
                         if self.barrage_gates[i-1] == 1:
                             index = i
                             self.barrage_gates[i-1] = 0
                             self.barrage_time[i-1] = count_time_as_second
                             break
-                    elif i%3 == 2:
+                    elif i % 3 == 2:
                         if self.barrage_gates[i-2] == 1:
                             index = i
                             self.barrage_gates[i-2] = 0
                             self.barrage_time[i-2] = count_time_as_second
                             break
-                
+
         except:
             index = self.barrage_time.index(min(self.barrage_time))
         position = self.barrage_positions[index]
         self.barrage_gates[index] = 0
 
         barrage_start_time = str(hour)+":"+str(minute)+":"+str(second)+".00"
-        barrage_end_time = str(hour)+":"+str(minute)+":"+str(second+stay_time)+".00"
+        barrage_end_time = str(hour)+":"+str(minute) + \
+            ":"+str(second+stay_time)+".00"
         if (second + stay_time) > 60:
             left = second + stay_time - 60
             barrage_end_time = str(hour)+":" + \
@@ -184,11 +187,14 @@ class DouYu_barrage_generate:
 
 if __name__ == "__main__":
     flag = True
-    stay_time = 10
+    stay_time = 5
     while flag:
+        t = time.time()
         v_id = input("输入对应视频的id：")
         # title  = "zard1991_【2020-12-10 21点场】zard1991：zard1991_斗鱼视频 - 最6的弹幕视频网站"
         title = catch_danmu(v_id)
         douYu_barrage_generate = DouYu_barrage_generate()
         douYu_barrage_generate.run(title, stay_time)
+        time_cost = time.time() - t
+        print("花费时间为%.2f秒。" % time_cost)
         print("完成，现在开始下一个！\n")
